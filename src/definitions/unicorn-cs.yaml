@@ -1,0 +1,2808 @@
+---
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Configuration Server for Unicorn WebApp
+  description: Configuration server for Unicorn WebApp
+basePath: "/"
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  '/accessLogs':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpAccessLogs
+      summary: Returns Acp Access Logs
+      description: Query Cloudant for all ACP access logs.
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/accessLogs/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpAccessLogs
+      summary: Substring search for Acp Access Logs based on keyword criteria
+      description: Substring search for Acp Access Logs based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search for Acp Access Logs
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acps':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Returns Acps
+      description: Returns an array of Acps
+      produces:
+      - application/json
+      responses:
+        200:
+          description: An array of Acps
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Adds Acps
+      description: Adds Acps Settings. No need to include the fields id & rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acps object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acps:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Updates Acps
+      description: Updates Acps Settings
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acps object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acps:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acps/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Deletes Acps
+      description: Deletes Acps
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acps object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acps:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acps/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Substring search for Acps based on keyword criteria
+      description: Substring search for Acps based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search for Acps
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acps/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acps
+      summary: Returns a Acps associated with the ID requested
+      description: Returns a Acps associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Acp ID
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroups':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Returns Acp Group Settings
+      description: Returns an array of Acp Group
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Adds Acp Group
+      description: Adds Acp Group. No need to include the fields id & rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroups:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps-group'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Updates Acp Group
+      description: Updates Acp Group
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroups:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps-group'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroups/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Deletes Acp Group
+      description: Deletes Acp Group
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group object(s) that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroups:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroups/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Substring search for Acp Group based on keyword criteria
+      description: Substring search for Acp Group based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search for Acp Group
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroups/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroups
+      summary: Returns a Acp Group associated with the ID requested
+      description: Returns a Acp Group associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Acp Group id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroupSettings':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Returns Acp Group Settings
+      description: Returns an array of Acp Group Setting
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Adds Acp Group Setting
+      description: Adds Acp Group Settings. No need to include the fields id & rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group Setting object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroupSettings:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps-group-setting'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Updates Acp Group Setting
+      description: Updates Acp Group Settings
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group Setting object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroupSettings:
+              type: array
+              items:
+                $ref: '#/definitions/ms-acps-group-setting'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroupSettings/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Deletes Acp Group Setting
+      description: Deletes Acp Group Setting
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Acp Group Setting object(s) that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            acpGroupSettings:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroupSettings/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Substring search for Acp Group Setting based on keyword criteria
+      description: Substring search for Acp Group Setting based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search for Acp Group Setting
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/acpGroupSettings/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - acpGroupSettings
+      summary: Returns a Acp Group Setting associated with the ID requested
+      description: Returns a Acp Group Setting associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Acp Group Setting id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/applications':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Returns Application Configuration Kill Switch
+      description: Returns an array of Application Configuration Kill Switch
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Creates Application Configuration Kill Switches
+      description: Creates Application Configuration Kill Switches
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Application Configuration Kill Switch object array. No need to include the fields id & rev
+        in: body
+        required: true
+        schema:
+          properties:
+            applications:
+              type: array
+              items:
+                $ref: '#/definitions/uo-app-config'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Updates Application Configuration Kill Switches
+      description: Updates Application Configuration Kill Switches
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Application Configuration Kill Switch object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            applications:
+              type: array
+              items:
+                $ref: '#/definitions/uo-app-config'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/applications/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Deletes Application Configuration Kill Switch(es)
+      description: Deletes Application Configuration Kill Switch(es)
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Application Configuration Kill Switch object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            applications:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/applications/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Substring search Application Configuration Kill Switch based on keyword criteria
+      description: Substring search Application Configuration Kill Switch based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search Application Configuration Kill Switch
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/applications/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - applicationConfiguration
+      summary: Returns a Application Configuration Kill Switch associated with the ID requested
+      description: Returns a Application Configuration Kill Switch associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Application Configuration Kill Switch id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/audits':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - audits
+      summary: Returns Audit Logs
+      description: Returns an array of Audit Logs
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - audits
+      summary: Creates Audit Logs
+      description: Creates Audit Logs
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Audit Log objects
+        in: body
+        required: true
+        schema:
+          properties:
+            audits:
+              type: array
+              items:
+                $ref: '#/definitions/uni-audits'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/audits/search':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - audits
+      summary: Search for Audit Log in a date range based on search criteria
+      description: Search for Media Inventory in a date range based on search criteria
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            sortBy:
+              type: string
+              example: auditorName
+            sort:
+              type: string
+              example: asc|desc
+            startdate:
+              type: string
+              example: '2018-01-01'
+            enddate:
+              type: string
+              example: '2018-01-01'
+            searchString:
+              type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns Enumerations
+      description: Returns an array of Enumerations
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Array of searched Media Inventory
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Adds Enumerations
+      description: Adds Enumerations. No need to include the fields id & rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Enumerations object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            enumerations:
+              type: array
+              items:
+                $ref: '#/definitions/ms-enumerations'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Updates Enumerations
+      description: Updates Enumerations
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Enumerations object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            enumerations:
+              type: array
+              items:
+                $ref: '#/definitions/ms-enumerations'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Deletes Enumerations
+      description: Deletes Enumerations
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Enumerations object that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            enumerations:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/us/states':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns an array of US States
+      description: Returns an array of US States
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/all/keys':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns an array of Enumerations group by key value
+      description: Returns an array of Enumerations group by key value
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/media/keys':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns an array of Media related Enumerations group by key value
+      description: Returns an array of Media related Enumerations group by key value
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Substring search of Enumerations based on keyword criteria
+      description: Substring search of Enumerations based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search of enumerations
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/media/key/{key}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns Media related Enumerations associated by the KEY requested
+      description: Returns Media related Enumerations associated by the KEY requested
+      produces:
+      - application/json
+      parameters:
+      - name: key
+        description: Enumeration key value
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/key/{key}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns enumerations associated by the KEY requested
+      description: Returns enumerations associated by the KEY requested
+      produces:
+      - application/json
+      parameters:
+      - name: key
+        description: Enumeration key value
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/enumerations/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - enumerations
+      summary: Returns a enumeration associated with the ID requested
+      description: Returns a enumeration associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Enumeration id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/experienceAccess':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Returns Experience Access
+      description: Returns an array of Experience Access
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Adds Experience Access
+      description: Adds Experience Access. No need to include the fields rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Experience Access object created
+        in: body
+        required: true
+        schema:
+          properties:
+            experienceAccesses:
+              type: array
+              items:
+                $ref: '#/definitions/ms-entitlements'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Updates Experience Access
+      description: Updates Experience Access
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Experience Access object updated
+        in: body
+        required: true
+        schema:
+          properties:
+            experienceAccesses:
+              type: array
+              items:
+                $ref: '#/definitions/ms-entitlements'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/experienceAccess/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Deletes Experience Access
+      description: Deletes Experience Access
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Experience Access object deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            experienceAccesses:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/experienceAccess/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Substring search of Experience Access based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Any criteria to search for
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/experienceAccess/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - experienceAccess
+      summary: Returns the Experience Access associated with the ID requested
+      description: Returns the Experience Access associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Experience Access id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Returns groups from Cloudant
+      description: Returns groups from Cloudant
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups/addGroup':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Create Permissioning Groups in LDAP and Cloudant
+      description: Calls ms-auth service auth/permissions/. Create Permissioning Groups
+        in LDAP and Cloudant
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Group object
+        in: body
+        required: true
+        schema:
+          properties:
+            groups:
+              type: array
+              items:
+                $ref: '#/definitions/groups'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups/ldap/allGroups':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Returns all LDAP groups
+      description: Calls ms-auth service /ldap/groups/. Returns an array of all LDAP
+        groups
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups/getGroupsByDisplayName/{groupName}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Returns users in LDAP group by role name
+      description: Calls ms-auth service Ldap/getGroupsByDisplayName?group=<groupName>. Returns users in LDAP group by role name
+      produces:
+      - application/json
+      parameters:
+      - name: groupName
+        description: Group Role Name
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Substring search of groups based on keyword criteria
+      description: Substring search of groups based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search of groups
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/groups/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - groups
+      summary: Returns a group associated with the ID requested
+      description: Returns a group associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Group id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/inventory/cabanaAndPremiumSeats/{date}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - premiumSeatingInventory
+      summary: Returns Cabana & Premium Seating Inventory for a particular date
+      description: Calls ms-inventory-fulfillment service /GalaxyAdapter/uep/queryCatalog. Returns Cabana & Premium Seating Inventory for a particular date
+      produces:
+      - application/json
+      parameters:
+      - name: date
+        description: Current date or date in the future
+        in: path
+        required: true
+        type: string
+        default: ' 2018-04-01'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/linkingConfiguration':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - linkingConfiguration
+      summary: Returns Linking Configurations
+      description: Returns an array of Linking Configurations
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - linkingConfiguration
+      summary: Updates Linking Configurations
+      description: Updates Linking Configurations
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Linking Configurations object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            linkingConfiguration:
+              type: array
+              items:
+                $ref: '#/definitions/uo-product-config'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Returns Locations
+      description: Returns an array of Locations
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Adds Locations
+      description: Adds Locations. No need to include the fields id & rev
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Locations object created
+        in: body
+        required: true
+        schema:
+            properties:
+              locations:
+                type: array
+                items:
+                  $ref: '#/definitions/ms-location'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Updates Locations
+      description: Updates Locations
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Locations object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            locations:
+              type: array
+              items:
+                $ref: '#/definitions/ms-location'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Deletes Locations
+      description: Deletes Locations
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Locations object that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            locations:
+              type: array
+              items:
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/stores':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Returns stores
+      description: Returns an array of stores
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Substring search for Locations based on keyword criteria
+      description: Substring search for Locations based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Substring search for Locations
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/type/{locationType}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Returns a locations by requested type
+      description: Returns a locations by requested type
+      produces:
+      - application/json
+      parameters:
+      - name: locationType
+        description: Location Type (Ex. Attraction, F&B Cart, Front Gate, Guest Storage, Park, Restaurant, Restroom, Seating, Services, Store, SubAttraction)
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/stores/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Returns a store associated with the store ID requested
+      description: Returns a store associated with the store ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Store id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/locations/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - locations
+      summary: Returns a location associated with the ID requested
+      description: Returns a location associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Location id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Returns Media Inventory
+      description: Returns an array of Media Inventory
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Updates Media Inventory
+      description: Updates Media Inventory
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Media Inventory object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            media:
+              type: array
+              items:
+                $ref: '#/definitions/ms-media'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Deletes Media Inventory
+      description: Deletes Media Inventory
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Media Inventory object that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            media:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/search':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Search for Media Inventory in a date range based on search criteria
+      description: Search for Media Inventory in a date range based on search criteria
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            sortBy:
+              type: string
+              example: mediaId|bandId|mediaType|status|state|locationState|lifecycleState|mediaColor|firmwareVersion|disposedReason|lastUpdatedDateTime
+            sort:
+              type: string
+              example: asc|desc
+            searchType:
+              type: string
+              example: ALL|LOEWS_RFID_CARD|TAPU_TAPU|TINY_TAPU|UNKNOWN|UO_RFID_CARD
+            searchString:
+              type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/baseline/summary':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Gets the current Media Inventory Manifest Summary
+      description: Gets the Media Inventory Manifest Summary displaying a summary of the Lifecycle State counts of wearables for the current date
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/baseline/{firmware}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Returns the Media baseline inventory for the selected firmware version
+      description: Returns the total numbers of wearables for the selected firmware version where lifecycleState IS NOT DISPOSED and the locationState IS NOT WAREHOUSE
+      produces:
+      - application/json
+      parameters:
+      - name: firmware
+        description: Firmware version
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/reset/{firmware}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Reset the Media baseline inventory for the selected firmware version
+      description: Reset the Media baseline inventory for the selected firmware version to locationState = Out of Park, state = Inactive, status = Unassigned, cleaned = False, lifecycleState = Disposed and disposedReason = Lost
+      produces:
+      - application/json
+      parameters:
+      - name: firmware
+        description: Firmware version
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/mediaInventory/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - mediaInventory
+      summary: Returns the Media Inventory associated with the ID requested
+      description: Returns the Media Inventory associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Media Inventory id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/orders/tenderTotals':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - orders
+      summary: Get daily totals by AttendantID
+      description: Get daily totals by AttendantID for an particular date
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            date:
+              type: string
+              example: '2017-03-26'
+            groupBy:
+              type: string
+              example: 'AttendantID|storeId'
+            id:
+              type: string
+              example: '3010'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/orders/refund':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - orders
+      summary: Create a refund
+      description: Calls ms-pay service /payment/refund. Create a refund for one or more order items
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/order'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/orders/search':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - orders
+      summary: Search for orders in a date range based on search criteria
+      description: Search for orders in a date range based on search criteria
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            sortBy:
+              type: string
+              example: _id|orderDate|storeId|source|grandTotal
+            sort:
+              type: string
+              example: asc|desc
+            startDate:
+              type: string
+              example: '2018-01-01'
+            endDate:
+              type: string
+              example: '2018-02-01'
+            searchType:
+              type: string
+              example: any|id|attendantId|grandTotal|phone1|cardAccountNumber|tokenId|methodOfPaymentTypeCode|visualId|plu
+            searchString:
+              type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/orders/refund/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - orders
+      summary: Returns refunds by orderID
+      description: Returns any returns of an order by customerOrderId
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Requires the custometOrderId (Ex. U04190470)
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/orders/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - orders
+      summary: Returns the full order object
+      description: Returns the full order object (with order items, entitlements, payments and refunds)
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Requires the custometOrderId (Ex. U02000894)
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/permissions':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Gets an array of all ACL Permissions
+      description: Gets an array of all ACL Permissions
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Create ACL Permissions
+      description: Create ACL Permissions
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            permissions:
+              type: array
+              items:
+                properties:
+                  key:
+                    type: string
+                    example: PermissioningAccess
+                  value:
+                    type: string
+                  label:
+                    type: string
+                  description:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Updates ACL Permissions
+      description: Updates ACL Permissions
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            permissions:
+              type: array
+              items:
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+                  key:
+                    type: string
+                    example: PermissioningAccess
+                  value:
+                    type: string
+                  label:
+                    type: string
+                  description:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/permissions/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Deletes ACL Permissions
+      description: Deletes ACL Permissions
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            permissions:
+              type: array
+              items:
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/permissions/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Returns ACL Permission by search criteria
+      description: Returns ACL Permission by ID
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: keyword to search the ACL Permission
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/permissions/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - permissions
+      summary: Returns ACL Permission by ID
+      description: Returns ACL Permission by ID
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: documentId of the ACL Permission
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/users':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - users
+      summary: Get all LDAP users
+      description: Calls ms-auth service /Ldap/getUsers. Returns an array of all LDAP
+        users
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/users/updateUserGroups':
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - users
+      summary: Modifies a group in LDAP
+      description: Calls ms-auth service /Ldap/modifyGroupInLdap/. Add or Deletes
+        user in LDAP groups
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            data:
+              type: array
+              items:
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      type: string
+                  id:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/users/resetPassword/{id}':
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - users
+      summary: Change a password without having to specify the old password
+      description: Calls ms-auth service /auth/changeForgottenPassword/<loginId>.
+        Change a password without having to specify the old password
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Users SSO login ID
+        in: path
+        required: true
+        type: string
+      - name: body
+        in: body
+        required: true
+        schema:
+          properties:
+            newPassword:
+              type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/users/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - users
+      summary: Returns the user associated with the SSO login ID requested
+      description: Calls ms-auth service /Ldap/getUserByLoginId?loginId=<loginId>.
+        Returns the user associated with the SSO login ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Users SSO login ID
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/waitTimeBoards':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Returns Wait Time Boards
+      description: Returns an array of Wait Time Boards
+      produces:
+      - application/json
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Adds Wait Time Boards
+      description: Creates a Wait Time Boards
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Wait Time Board object that needs to be added. No need to include
+          the fields id & rev
+        in: body
+        required: true
+        schema:
+          properties:
+            waitTimeBoards:
+              type: array
+              items:
+                $ref: '#/definitions/ms-waitboards'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+    put:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Updates Wait Time Boards
+      description: Updates Wait Time Boards
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Wait Time Board object(s)
+        in: body
+        required: true
+        schema:
+          properties:
+            waitTimeBoards:
+              type: array
+              items:
+                $ref: '#/definitions/ms-waitboards'
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/waitTimeBoards/delete':
+    post:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Deletes Wait Time Boards
+      description: Deletes Wait Time Boards
+      produces:
+      - application/json
+      parameters:
+      - name: body
+        description: Wait Time Board object that needs to be deleted
+        in: body
+        required: true
+        schema:
+          properties:
+            waitTimeBoards:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  _rev:
+                    type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/waitTimeBoards/search/{criteria}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Substring search of Wait Time Boards based on keyword criteria
+      produces:
+      - application/json
+      parameters:
+      - name: criteria
+        description: Any criteria that match any of the fields _id, boardName, boardType,
+          boardTheme, and locationName
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+  '/waitTimeBoards/{id}':
+    get:
+      x-upr-api:
+        corp: true
+      tags:
+      - waitTimeBoards
+      summary: Returns the Wait Time Board associated with the ID requested
+      description: Returns the Wait Time Board associated with the ID requested
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        description: Wait Time Board id
+        in: path
+        required: true
+        type: string
+      responses:
+        200:
+          description: OK
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  ms-acps:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      acpId:
+        type: string
+      acpGroupId:
+        type: string
+      computerName:
+        type: string
+      description:
+        type: string
+      enabled:
+        default: false
+        type: boolean
+      fixedLocation:
+        default: false
+        type: boolean
+      lastLocationUsedId:
+        type: string
+      attractionId:
+        type: string
+      ipAddress:
+        type: string
+    required:
+    - computerName
+    - acpGroupId
+  ms-acps-group:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      acpGroupId:
+        type: string
+      acpgroupSettingId:
+        type: string
+      locationId:
+        type: string
+      name:
+        type: string
+    required:
+    - name
+  ms-acps-group-setting:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      groupSettingId:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+      biometricsCheckEnabled:
+        default: false
+        type: boolean
+      biometricsAccuracyRate:
+        type: number
+        format: double
+        default: 0
+      residentCheckEnabled:
+        default: false
+        type: boolean
+      velocityCheckEnabled:
+        default: false
+        type: boolean
+      velocityThresholdInMinutes:
+        type: number
+        format: double
+        default: 0
+      reEntryCheckEnabled:
+        default: false
+        type: boolean
+      theme:
+        type: string
+      screenSaverTimeInMinutes:
+        type: number
+        format: double
+        default: 0
+      experienceAccess:
+        type: array
+        items:
+          type: string
+      customCheckEnabled:
+        default: false
+        type: boolean
+    required:
+    - name
+  uo-app-config:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      applicationName:
+        type: string
+      applicationVersion:
+        type: string
+      operatingSystem:
+        type: string
+      applicationFeatures:
+        type: array
+        items:
+          type: object
+          properties:
+            label:
+              type: string
+            value:
+              type: string
+    required:
+    - applicationName
+    - applicationVersion
+    - operatingSystem
+  uni-audits:
+    properties:
+      applicationName:
+        type: string
+      operationName:
+        type: string
+      auditMessage:
+        type: string
+      auditorId:
+        type: string
+      auditedId:
+        type: number
+        format: double
+      auditorDetail:
+        type: object
+        properties:
+          name:
+            type: string
+          id:
+            type: string
+          roles:
+            type: array
+            items:
+              type: string
+      oldObject:
+        type: object
+      newObject:
+        type: object
+      createdDate:
+        format: date-time
+        pattern: '^(\\\\d{4})(-)?(\\\\d\\\\d)(-)?(\\\\d\\\\d)(T)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(\\\\.\\\\d+)?(Z|([+-])(\\\\d\\\\d)(:)?(\\\\d\\\\d))'
+        type: string
+      createdBy:
+        type: string
+    required:
+    - applicationName
+    - operationName
+    - auditMessage
+  ms-enumerations:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      id:
+        type: string
+      key:
+        type: string
+      value:
+        type: string
+      label:
+        type: string
+      description:
+        type: string
+      createdDate:
+        type: string
+        format: date-time
+        pattern: '^(\\\\d{4})(-)?(\\\\d\\\\d)(-)?(\\\\d\\\\d)(T)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(\\\\.\\\\d+)?(Z|([+-])(\\\\d\\\\d)(:)?(\\\\d\\\\d))'
+    required:
+    - key
+    - value
+  ms-entitlements:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      locationId:
+        type: string
+      description:
+        type: string
+      facilityId:
+        type: string
+      facilityOperationId:
+        type: string
+      experienceOperationId:
+        type: string
+      attractionId:
+        type: string
+      locationName:
+        type: string
+    required:
+    - _id
+    - locationId
+  groups:
+    type: object
+    properties:
+      role:
+        type: string
+        example: CamelCaseRoleName
+      label:
+        type: string
+      jobCode:
+        type: array
+        items:
+          type: string
+          example: '0001'
+      positionNumber:
+        type: array
+        items:
+          type: string
+          example: '00001000'
+      parkReportingLevel:
+        type: string
+        example: ALL
+      permissions:
+        type: array
+        items:
+          type: string
+          example: ALL
+  uo-product-config:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      enforceFirstFactor:
+        default: false
+        type: boolean
+      enforceSecondFactor:
+        default: false
+        type: boolean
+      enforcePluMaximum:
+        default: false
+        type: boolean
+      maxFirstFactorFailures:
+        type: number
+        format: double
+      maxSecondFactorFailures:
+        default: 0
+        type: number
+        format: double
+      maxPluDays:
+        default: 0
+        type: number
+        format: double
+      createdDateTime:
+        format: date-time
+        pattern: '^(\\\\d{4})(-)?(\\\\d\\\\d)(-)?(\\\\d\\\\d)(T)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(\\\\.\\\\d+)?(Z|([+-])(\\\\d\\\\d)(:)?(\\\\d\\\\d))'
+        type: string
+      maxLockingDays:
+        default: 0
+        type: number
+        format: double
+  ms-location:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      locationId:
+        type: string
+      tcmId:
+        type: string
+      name:
+        type: string
+      longDescription:
+        type: string
+      shortDescription:
+        type: string
+      restrictions:
+        type: string
+      accessibility:
+        type: string
+      type:
+        type: string
+      typeDetails:
+        type: object
+      parentAttractionId:
+        type: string
+      zone:
+        type: string
+      cmsIndicator:
+        default: false
+        type: boolean
+      active:
+        default: true
+        type: boolean
+      expressPassIndicator:
+        default: false
+        type: boolean
+      virtualQueueIndicator:
+        default: false
+        type: boolean
+      capacity:
+        type: number
+        format: double
+      runningCapacity:
+        type: number
+        format: double
+      latitude:
+        type: string
+      longitude:
+        type: string
+      operatingHours:
+        default:
+          openTime: ''
+          closeTime: ''
+        type: object
+      operatingState:
+        type: string
+      waitTimeInMinutes:
+        type: number
+        format: double
+      lastUpdatedDateTime:
+        format: date-time
+        pattern: '^(\\\\d{4})(-)?(\\\\d\\\\d)(-)?(\\\\d\\\\d)(T)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(:)?(\\\\d\\\\d)(\\\\.\\\\d+)?(Z|([+-])(\\\\d\\\\d)(:)?(\\\\d\\\\d))'
+        type: string
+      addressLine1:
+        type: string
+      addressLine2:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      country:
+        type: string
+      phoneNumber:
+        type: string
+      attractionId:
+        default: ''
+        type: string
+      storeId:
+        default: ''
+        type: string
+      parentId:
+        default: ''
+        type: string
+      merchantId:
+        default: ''
+        type: string
+      terminalIds:
+        default: []
+        type: array
+        items:
+          type: string
+      avgRideDuration:
+        default: 0
+        type: number
+        format: double
+      rideDurationErrorValue:
+        default: ''
+        type: string
+      operatingCalendar:
+        default: []
+        type: array
+        items:
+          type: string
+      maximoLocation:
+        default: ''
+        type: string
+      merchantCategory:
+        default: ''
+        type: string
+      category:
+        default: 0
+        type: number
+        format: double
+    required:
+    - locationId
+  ms-media:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      bandId:
+        type: string
+      buildDate:
+        type: string
+      createdBy:
+        type: string
+      cleaned:
+        type: string
+      createdDateTime:
+        type: string
+      disposedReason:
+        type: string
+      expirationDateTime:
+        type: string
+      firmwareVersion:
+        type: string
+      lastUpdatedBy:
+        type: string
+      lastUpdatedDateTime:
+        type: string
+      lastRepairDateTime:
+        type: string
+      lifecycleState:
+        type: string
+      locationState:
+        type: string
+      locationStateDateTime:
+        type: string
+      mediaColor:
+        type: string
+      mediaId:
+        type: string
+      mediaType:
+        type: string
+      repairReason:
+        type: string
+      state:
+        type: string
+      status:
+        type: string
+  order:
+    properties:
+      sortBy:
+        type: string
+        example: _id|orderDate|storeId|source|grandTotal
+      sort:
+        type: string
+        example: asc|desc
+      startDate:
+        type: string
+        example: '2018-01-01'
+      endDate:
+        type: string
+        example: '2018-02-01'
+      searchType:
+        type: string
+        example: any|id|attendantId|grandTotal|phone1|cardAccountNumber|tokenId|methodOfPaymentTypeCode|visualId|plu
+      searchString:
+        type: string
+  ms-waitboards:
+    properties:
+      _id:
+        type: string
+      _rev:
+        type: string
+      waitTimeBoardId:
+        type: string
+      parentId:
+        type: string
+      boardName:
+        type: string
+      boardType:
+        type: string
+      cycleTimeInMins:
+        type: string
+      boardTheme:
+        type: string
+      boardLayout:
+        type: string
+      assignedEvents:
+        type: array
+        items:
+          type: string
+      locationId:
+        type: string
+      bufferTime:
+        type: string
+      waitTime:
+        type: string
+  error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+parameters: {}
+responses: {}
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  catalogs:
+    apic-dev:
+      properties:
+        runtime-url: $(TARGET_URL)
+    sb:
+      properties:
+        runtime-url: 'http://localhost:4405'
+  assembly:
+    execute:
+      - invoke:
+          target-url: $(runtime-url)$(request.path)$(request.search)
