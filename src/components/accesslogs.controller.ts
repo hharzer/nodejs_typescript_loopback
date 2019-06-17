@@ -2,80 +2,98 @@ import { Request, Response } from "express";
 import { AccessLogsService } from "./accesslogs.service";
 
 /**
- * GET /getAccessLogs
+ * getAccessLogs
+ * @param req
+ * @param res
  */
-export let getAccessLogs = (req: Request, res: Response): Promise<any> => {
+export let getAccessLogs = async (req: Request, res: Response): Promise<any> => {
 
-  return new Promise((resolve, reject) => {
-
-    const accessLogsServiceInstance = new AccessLogsService();
-    const accessLogsServiceResult = accessLogsServiceInstance.getAccessLogs();
+  try {
+    return new Promise((resolve, reject) => {
+      const accessLogsServiceInstance = new AccessLogsService();
+      const accessLogsServiceResult = accessLogsServiceInstance.getAccessLogs();
       if (accessLogsServiceResult) {
-        resolve(accessLogsServiceResult);
-      } else {
-        res.statusCode = 500;
-        reject("Error");
+        return resolve(accessLogsServiceResult);
       }
-    }).catch(_error => {
-      console.log("caught", _error.message);
+      else {
+        res.statusCode = 500;
+        return reject("Error");
+      }
     });
+  }
+  catch (_error) {
+    console.log("caught", _error.message);
+  }
 
 };
 
 /**
- * GET /searchAccessLogs
+ * searchAccessLogs
+ * @param req
+ * @param res
  */
 export let searchAccessLogs = (req: Request, res: Response): Promise<any> => {
-
+  try {
     return new Promise((resolve, reject) => {
 
-    req.assert("criteria", "Criteria cannot be blank").notEmpty();
+      // req.assert("criteria", "Criteria cannot be blank").isEmpty();
+      req.assert("criteria", "Criteria cannot be less than 2 characters").isLength({ min: 2 });
 
-    const errors = req.validationErrors();
+      const errors = req.validationErrors();
 
-    if (errors) {
-      res.statusCode = 422;
-      reject(errors);
-    }
+      if (errors) {
+        res.statusCode = 422;
+        return reject(errors);
+      }
 
-    const accessLogsService = new AccessLogsService();
-    const searchResults = accessLogsService.searchAccessLogs(req.params.criteria);
-    if (searchResults) {
-      resolve(searchResults);
-    } else {
-      res.statusCode = 500;
-      reject("Error");
-    }
+      const accessLogsService = new AccessLogsService();
+      const searchResults = accessLogsService.searchAccessLogs(req.params.criteria);
+      if (searchResults) {
+        return resolve(searchResults);
+      } else {
+        res.statusCode = 500;
+        return reject("Error");
+      }
 
-  });
+    });
+  }
+  catch (_error) {
+    console.log("caught", _error.message);
+  }
 
 };
 
 /**
- * Get /getLastAccessLogByAcpId
+ * getLastAccessLogByAcpId
+ * @param req
+ * @param res
  */
 export let getLastAccessLogByAcpId = (req: Request, res: Response): Promise<any> => {
+  try {
+    return new Promise((resolve, reject) => {
 
-  return new Promise((resolve, reject) => {
+      req.assert("id", "ID cannot be blank1").isEmpty();
+      const errors = req.validationErrors();
 
-    req.assert("id", "ID cannot be blank").isEmpty();
-    const errors = req.validationErrors();
+      if (errors) {
+        res.statusCode = 422;
+        return reject(errors);
+      }
 
-    if (errors) {
-      res.statusCode = 422;
-      reject(errors);
-    }
+      const accessLogsService = new AccessLogsService();
+      const accessLogsServiceResults = accessLogsService.getLastAccessLogByAcpId(req.params.id);
 
-    const accessLogsService = new AccessLogsService();
-    const accessLogsServiceResults = accessLogsService.searchAccessLogs(req.params.id);
 
-    if (accessLogsServiceResults) {
-      resolve(accessLogsServiceResults);
-    } else {
-      res.statusCode = 500;
-      reject("Error");
-    }
+      if (accessLogsServiceResults) {
+        return resolve(accessLogsServiceResults);
+      } else {
+        res.statusCode = 500;
+        return reject("Error");
+      }
 
-  });
-
+    });
+  }
+  catch (_error) {
+    console.log("caught", _error.message);
+  }
 };

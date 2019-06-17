@@ -2,48 +2,51 @@
 import { IAccessLogs } from "./accesslogs.interface";
 import { loopBackCloudantDB } from "../util/cloudant.util";
 
+/**
+ * Database and model names
+ */
+const dbName = "ms-acps";
+const modelName = "AcpGroupModel";
+
 export class AccessLogsService implements IAccessLogs {
-    criteria?: string;
-    id?: string;
 
-    constructor(private _criteria?: string, _id?: string) {
-        this.criteria = _criteria;
-        this.id = _id;
-    }
-    public getAccessLogs(): any {
+  constructor() {}
+  public getAccessLogs(): any {
 
-        const query = {
-          "selector": {
-            "loopback__model__name": {"$gt": ""},
-          },
-          "use_index": "_design/lb-index-ddoc-AcpGroupModel",
-          "sort": [{"createdDateTime:string": "desc"}],
-        };
+    const query = {
+      "selector": {
+        "loopback__model__name": { "$gt": "" },
+      },
+      "use_index": `_design/lb-index-ddoc-${modelName}`,
+      "sort": [{ "createdDateTime:string": "desc" }],
+    };
 
-        return loopBackCloudantDB.runQuery("ms-acps", "AcpGroupModel", query);
+    return loopBackCloudantDB.runQuery(`${dbName}`, `${modelName}`, query);
 
-      }
+  }
+  public searchAccessLogs(criteria: string): any {
 
-    public searchAccessLogs(criteria: string): any {
+    const query = {
+      "selector": {
+        "$or": [
+          { "name": { "$regex": "(?i)" + criteria } },
+        ],
+      },
+      "use_index": `_design/lb-index-ddoc-${modelName}`,
+      "sort": [{ "_id:string": "desc" }],
+    };
 
-        const query = {
-          "selector": {
-            "$or": [
-              {"name": {"$regex": "(?i)" + criteria}},
-            ],
-          },
-          "use_index": "_design/lb-index-ddoc-AcpGroupModel",
-          "sort": [{"_id:string": "desc"}],
-        };
+    return loopBackCloudantDB.runQuery(`${dbName}`, `${modelName}`, query);
+  }
 
-        return loopBackCloudantDB.runQuery("ms-acps", "AcpGroupModel", query);
-    }
-    public getLastAccessLogByAcpId(_id: string): any {
+  /**
+   * getLastAccessLogByAcpId
+   * @param _id
+   */
+  public getLastAccessLogByAcpId(_id: string): any {
 
-
-
-        // call to the DB
-        return this.criteria;
-    }
+    // call to the DB
+    return _id;
+  }
 }
 

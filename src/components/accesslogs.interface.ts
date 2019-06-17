@@ -1,6 +1,6 @@
 
 export interface IAccessLogs {
-  criteria?: string;
-  id?: string;
+  searchAccessLogs: Function;
+  getLastAccessLogByAcpId: Function;
 }
 
