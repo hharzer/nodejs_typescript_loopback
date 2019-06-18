@@ -64,7 +64,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="typescript-node-starter">TypeScript Node Starter</h1>
+				<h1 id="typescript-nodejs-scaffolding">TypeScript NodeJS Scaffolding</h1>
 				<p>The main purpose of this repository is to show a good end-to-end project setup and workflow for writing Node code in TypeScript.</p>
 				<h1 id="pre-reqs">Pre-reqs</h1>
 				<p>To build and run this app locally you will need a few things:</p>
@@ -75,85 +75,15 @@
 				</ul>
 				<h1 id="getting-started">Getting started</h1>
 				<ul>
-					<li>Clone the repository<pre><code>git <span class="hljs-keyword">clone</span> <span class="hljs-title">--depth</span>=<span class="hljs-number">1</span> https://github.com/iamwilliamdiaz/typescript-<span class="hljs-keyword">node</span><span class="hljs-title">-master</span>.git <span class="hljs-tag">&lt;project_name&gt;</span></code></pre></li>
+					<li>Clone the repository<pre><code>git <span class="hljs-keyword">clone</span> <span class="hljs-title">--depth</span>=<span class="hljs-number">1</span> https://github.com/iamwilliamdiaz/nodejs_typescript_loopback <span class="hljs-tag">&lt;project_name&gt;</span></code></pre></li>
 					<li>Install dependencies<pre><code><span class="hljs-attr">cd</span> <span class="hljs-string">&lt;project_name&gt;</span>
-<span class="hljs-attr">npm</span> <span class="hljs-string">install</span></code></pre></li>
-					<li>Configure your mongoDB server<pre><code class="language-bash"><span class="hljs-comment"># create the db directory</span>
-sudo mkdir -p /data/db
-<span class="hljs-comment"># give the db correct read/write permissions</span>
-sudo chmod 777 /data/db</code></pre>
-					</li>
-					<li>Start your mongoDB server (you&#39;ll probably want another command prompt)<pre><code><span class="hljs-attribute">mongod</span></code></pre></li>
-					<li>Build and run the project<pre><code><span class="hljs-built_in">npm</span> run build
-<span class="hljs-built_in">npm</span> start</code></pre>Or, if you&#39;re using VS Code, you can use <code>cmd + shift + b</code> to run the default build task (which is mapped to <code>npm run build</code>), and then you can use the command palette (<code>cmd + shift + p</code>) and select <code>Tasks: Run Task</code> &gt; <code>npm: start</code> to run <code>npm start</code> for you.</li>
+<span class="hljs-attr">npm</span> <span class="hljs-string">install</span></code></pre>Or, if you&#39;re using VS Code, you can use <code>cmd + shift + b</code> to run the default build task (which is mapped to <code>npm run build</code>), and then you can use the command palette (<code>cmd + shift + p</code>) and select <code>Tasks: Run Task</code> &gt; <code>npm: start</code> to run <code>npm start</code> for you.</li>
 				</ul>
 				<blockquote>
 					<p><strong>Note on editors!</strong> - TypeScript has great support in <a href="http://www.typescriptlang.org/index.html#download-links">every editor</a>, but this project has been pre-configured for use with <a href="https://code.visualstudio.com/">VS Code</a>.
 					Throughout the README I&#39;ll try to call out specific places where VS Code really shines or where this project has been setup to take advantage of specific features.</p>
 				</blockquote>
 				<p>Finally, navigate to <code>http://localhost:3000</code> and you should see the template being served and rendered locally!</p>
-				<h1 id="deploying-the-app">Deploying the app</h1>
-				<p>There are many ways to deploy an Node app, and in general, nothing about the deployment process changes because you&#39;re using TypeScript.
-				In this section, I&#39;ll walk you through how to deploy this app to Azure App Service using the extensions available in VS Code because I think it is the easiest and fastest way to get started, as well as the most friendly workflow from a developer&#39;s perspective.</p>
-				<h2 id="pre-reqs">Pre-reqs</h2>
-				<ul>
-					<li><a href="https://azure.microsoft.com/en-us/free/"><strong>Azure account</strong></a> - If you don&#39;t have one, you can sign up for free.
-					The Azure free tier gives you plenty of resources to play around with including up to 10 App Service instances, which is what we will be using.</li>
-					<li><a href="https://code.visualstudio.com/"><strong>VS Code</strong></a> - We&#39;ll be using the interface provided by VS Code to quickly deploy our app.</li>
-					<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice"><strong>Azure App Service VS Code extension</strong></a> - In VS Code, search for <code>Azure App Service</code> in the extension marketplace (5th button down on the far left menu bar), install the extension, and then reload VS Code.</li>
-					<li><strong>Create a cloud database</strong> -
-						For local development, running MongoDB on localhost is fine, however once we deploy we need a database with high availability.
-						The easiest way to achieve this is by using a managed cloud database.
-					There are many different providers, but the easiest one to get started with is <a href="#mlab">MongoLab</a>.</li>
-				</ul>
-				<h3 id="-a-name-mlab-a-create-a-managed-mongodb-with-mongolab"><a name="mlab"></a> Create a managed MongoDB with MongoLab</h3>
-				<ol>
-					<li>Navigate to <a href="https://mlab.com/">MongoLab&#39;s Website</a>, sign up for a free account, and then log in.</li>
-					<li>In the <strong>MongoDB Deployments</strong> section, click the <strong>Create New</strong> button.</li>
-					<li>Select any provider (I recommend <strong>Microsoft Azure</strong> as it provides an easier path to upgrading to globally distributed instances later).</li>
-					<li>Select <strong>Sandbox</strong> to keep it free unless you know what you&#39;re doing, and hit <strong>Continue</strong>.</li>
-					<li>Select a region (I recommend the region geographically closest to your app&#39;s users).</li>
-					<li>Add a name, click <strong>Continue</strong> again, and finally <strong>Submit Order</strong>.</li>
-					<li>Once your new database is created, select it from the <strong>MongoDB Deployments</strong> section.</li>
-					<li>Create a user by selecting the <strong>User</strong> tab, clicking the <strong>Add database user</strong> button, adding a username and password, and then clicking <strong>Create</strong>.
-					A user account is required to connect to the database, so remember these values because you will need them as part of your connection string.</li>
-					<li>Copy the connection string from the top of the page, it should look like this: <code>mongodb://&lt;dbuser&gt;:&lt;dbpassword&gt;@ds036069.mlab.com:36069/test-asdf</code>
-						and replace <code>&lt;dbUser&gt;</code> and <code>&lt;dbpassword&gt;</code> with the credentials you just created.
-						Back in your project, open your <code>.env</code> file and update <code>MONGODB_URI</code> with your new connection string.<blockquote>
-							<p>NOTE! - If you don&#39;t have an <code>.env</code> file yet, rename <code>.env.example</code> to <code>.env</code> and follow the comments to update the values in that file.</p>
-						</blockquote>
-					</li>
-					<li><strong>Success!</strong>
-						You can test that it works locally by updating <code>MONGODB_URI_LOCAL</code> to the same connection string you just updated in <code>MONGO_URI</code>.
-						After rebuilding/serving, the app should work, but users that were previously created in local testing will not exist in the new database!
-					Don&#39;t forget to return the <code>MONGO_URI_LOCAL</code> to your local test database (if you so desire).</li>
-				</ol>
-				<h2 id="deploying-to-azure-app-service">Deploying to Azure App Service</h2>
-				<p>Deploying from VS Code can be broken into the following steps:</p>
-				<ol>
-					<li>Authenticate your Azure account in VS Code</li>
-					<li>Build your app</li>
-					<li>Zip deploy using the Azure App Service extension</li>
-				</ol>
-				<h3 id="sign-in-to-your-azure-account">Sign in to your Azure account</h3>
-				<ol>
-					<li>Open VS Code</li>
-					<li>Expand the Azure App Service menu in the explorer menu<ul>
-							<li>If you don&#39;t see this, you might not have the <code>Azure App Service</code> extension installed.
-							See the pre-reqs section.</li>
-						</ul>
-					</li>
-					<li>Click <code>Sign in to Azure...</code></li>
-					<li>Choose <code>Copy &amp; Open</code> from the resulting dialog<ul>
-							<li>This will open <code>aka.ms/devicelogin</code> in a browser window.
-							If it doesn&#39;t, just navigate there manually.</li>
-						</ul>
-					</li>
-					<li>Paste in the code that is on your clipboard.</li>
-					<li>Go back to VS Code, you should now be signed in.
-						You can confirm that everything worked by seeing your Azure subscription listed in the Azure App Service section of the explorer window.
-					Additionally you should see the email associated with your account listed in the status bar at the bottom of VS Code. </li>
-				</ol>
 				<h3 id="build-the-app">Build the app</h3>
 				<p>Building the app locally is required for before a zip deploy because the App Service won&#39;t execute build tasks.
 				Build the app however you normally would:</p>
@@ -161,38 +91,6 @@ sudo chmod 777 /data/db</code></pre>
 					<li><code>ctrl + shift + b</code> - kicks off default build in VS Code</li>
 					<li>execute <code>npm run build</code> from a terminal window</li>
 				</ul>
-				<h3 id="zip-deploy-from-vs-code">Zip deploy from VS Code</h3>
-				<ol>
-					<li>Make sure your app is built, whatever is currently in your <code>dist</code> and <code>node_modules</code> folders will be the app that is deployed.</li>
-					<li>Click the blue up arrow (Deploy to Web App) on the Azure App Service section of the explorer window.</li>
-					<li>Choose the entire project directory.
-					If you haven&#39;t changed the name, this will be <code>typescript-node</code>.</li>
-					<li>Choose the subscription you want this app to be billed to (don&#39;t worry, it will be free).</li>
-					<li>Choose <code>Create New Web App</code></li>
-					<li>Enter a globally unique name -
-					This will be part of the URL that azure generates so it has to be unique, but if you&#39;re planning on adding a custom domain later, it&#39;s not that important. I usually just add random numbers to the end of the app name, ie. typescript-node-15121214.</li>
-					<li>Choose a resource group -
-						If you don&#39;t know what this is, just create a new one.
-						If you have lots of cloud resources that should be logically grouped together (think an app service and a database that supports that app) then you would want to put them in the same resource group.
-						This can always be updated later though.
-						If you create a new resource group, you&#39;ll also be prompted to pick a location for that group.
-					Pick something geographically close to where your users are.</li>
-					<li>Choose <code>Create new App Service Plan</code> -
-					An app service plan mainly is what determines the size and cost of the hardware your app will run on, but it also manages some other settings which we can ignore for now.</li>
-					<li>Choose <code>B1 - Basic</code> - This one is free.
-					If you know what you&#39;re doing, feel free to select a stronger pricing tier.</li>
-					<li>Choose your target node runtime version - We are deploying to Linux machines, and in addition we can choose the exact node runtime we want.
-					If you don&#39;t know what you want, choose whatever the current LTS build is.</li>
-					<li>Grab a cup of coffee - You&#39;ll see everything you just selected getting created in the output window.
-						All of this is powered by the <a href="https://docs.microsoft.com/en-us/cli/azure/overview?view=azure-cli-latest">Azure CLI</a> and can be easily replicated if you decide you want to customize this process.
-					This deployment is not the fastest option (but it is the easiest!). We are literally bundling everything in your project (including the massive node_modules folder) and uploading it to our Azure app service. Times will vary, but as a baseline, my deployment took roughly 6 minutes.</li>
-					<li>Add <code>NODE_ENV</code> environment variable - In the App Service section of the explorer window, expand the newly created service, right click on <strong>Application Settings</strong>, select <strong>Add New Settings...</strong>, and add <code>NODE_ENV</code> as the key and <code>production</code> as the value.
-						This setting determines which database to point to.
-					If you haven&#39;t created a cloud database yet, see <a href="#mlab">the setup instructions</a>.</li>
-					<li>Profit! If everything worked you should see a page that looks like this: <a href="https://typescript-node-starter.azurewebsites.net/">TypeScript Node Starter Demo Site</a></li>
-				</ol>
-				<h3 id="troubleshooting-failed-deployments">Troubleshooting failed deployments</h3>
-				<p>Deployment can fail for various reasons, if you get stuck with a page that says <em>Service Unavailable</em> or some other error, <a href="https://github.com/iamwilliamdiaz/typescript-node/issues/new">open an issue</a> and I&#39;ll try to help you resolve the problems.</p>
 				<h1 id="typescript-node">TypeScript + Node</h1>
 				<p>In the next few sections I will call out everything that changes when adding TypeScript to an Express project.
 				Note that all of this has already been setup for this project, but feel free to use this as a reference for converting other Node.js project to TypeScript.</p>
@@ -614,15 +512,6 @@ sudo chmod 777 /data/db</code></pre>
 npm <span class="hljs-built_in">run</span> tslint  <span class="hljs-comment">// runs only TSLint</span></code></pre><p>Notice that TSLint is not a part of the main watch task.
 					It can be annoying for TSLint to clutter the output window while in the middle of writing a function, so I elected to only run it only during the full build.
 				If you are interesting in seeing TSLint feedback as soon as possible, I strongly recommend the <a href="">TSLint extension in VS Code</a>.</p>
-				<h3 id="vscode-extensions">VSCode Extensions</h3>
-				<p>To enhance your development experience while working in VSCode we also provide you a list of the suggested extensions for working with this project:</p>
-				<p><img src="https://user-images.githubusercontent.com/14539/34583539-6f290a30-f198-11e7-8804-30f40d418e20.png" alt="Suggested Extensions In VSCode"></p>
-				<ul>
-					<li><a href="https://marketplace.visualstudio.com/items?itemName=eg2.tslint">TSLint</a></li>
-					<li><a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker">Code Spell Checker</a></li>
-					<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb">Azure Cosmos DB</a></li>
-					<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice">Azure App Service</a></li>
-				</ul>
 				<h1 id="dependencies">Dependencies</h1>
 				<p>Dependencies are managed through <code>package.json</code>.
 				In that file you&#39;ll find two sections:</p>
@@ -683,10 +572,6 @@ npm <span class="hljs-built_in">run</span> tslint  <span class="hljs-comment">//
 							<td>Easy form validation for Express.</td>
 						</tr>
 						<tr>
-							<td>fbgraph</td>
-							<td>Facebook Graph API library.</td>
-						</tr>
-						<tr>
 							<td>lodash</td>
 							<td>General utility library.</td>
 						</tr>
@@ -695,28 +580,8 @@ npm <span class="hljs-built_in">run</span> tslint  <span class="hljs-comment">//
 							<td>CSRF middleware.</td>
 						</tr>
 						<tr>
-							<td>mongoose</td>
-							<td>MongoDB ODM.</td>
-						</tr>
-						<tr>
 							<td>nodemailer</td>
 							<td>Node.js library for sending emails.</td>
-						</tr>
-						<tr>
-							<td>passport</td>
-							<td>Simple and elegant authentication library for node.js</td>
-						</tr>
-						<tr>
-							<td>passport-facebook</td>
-							<td>Sign-in with Facebook plugin.</td>
-						</tr>
-						<tr>
-							<td>passport-local</td>
-							<td>Sign-in with Username and Password plugin.</td>
-						</tr>
-						<tr>
-							<td>pug (jade)</td>
-							<td>Template engine for Express.</td>
 						</tr>
 						<tr>
 							<td>request</td>
@@ -797,37 +662,49 @@ npm <span class="hljs-built_in">run</span> tslint  <span class="hljs-comment">//
 						<a href="modules/_app_.html">"app"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_components_account_controller_.html">"components/account.controller"</a>
+						<a href="modules/_components_acpgroups_controller_.html">"components/acpgroups.controller"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_components_account_interface_.html">"components/account.interface"</a>
+						<a href="modules/_components_acpgroups_interface_.html">"components/acpgroups.interface"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_components_account_service_.html">"components/account.service"</a>
+						<a href="modules/_components_acpgroups_service_.html">"components/acpgroups.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_helpers_cloudant_helper_.html">"helpers/cloudant.helper"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interceptors_header_token_interceptor_.html">"interceptors/header.token.interceptor"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interceptors_index_interceptors_.html">"interceptors/index.interceptors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_middlewares_auth_middleware_.html">"middlewares/auth.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_middlewares_kafka_middleware_.html">"middlewares/kafka.middleware"</a>
+						<a href="modules/_middlewares_newrelic_middleware_.html">"middlewares/newrelic.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_middlewares_newrelic_middleware_.html">"middlewares/newrelic.middleware"</a>
+						<a href="modules/_middlewares_swagger_middleware_.html">"middlewares/swagger.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_middlewares_yourname_middleware_.html">"middlewares/yourname.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_routes_account_routes_.html">"routes/account.routes"</a>
+						<a href="modules/_routes_acpgroups_routes_.html">"routes/acpgroups.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_routes_login_routes_.html">"routes/login.routes"</a>
+						<a href="modules/_routes_index_routes_.html">"routes/index.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_routes_signup_routes_.html">"routes/signup.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_server_.html">"server"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_util_cloudant_util_.html">"util/cloudant.util"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_util_event_handler_util_.html">"util/event.handler.util"</a>
@@ -840,6 +717,12 @@ npm <span class="hljs-built_in">run</span> tslint  <span class="hljs-comment">//
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_util_secrets_util_.html">"util/secrets.util"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_util_swagger_validator_util_.html">"util/swagger.validator.util"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_util_utils_.html">"util/utils"</a>
 					</li>
 				</ul>
 			</nav>

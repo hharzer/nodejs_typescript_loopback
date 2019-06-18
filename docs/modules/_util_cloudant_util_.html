@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;util/event.handler.util&quot; | express-typescript-starter</title>
+	<title>&quot;util/cloudant.util&quot; | express-typescript-starter</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_util_event_handler_util_.html">&quot;util/event.handler.util&quot;</a>
+					<a href="_util_cloudant_util_.html">&quot;util/cloudant.util&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;util/event.handler.util&quot;</h1>
+			<h1>External module &quot;util/cloudant.util&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,52 +71,101 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Modules</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../classes/_util_event_handler_util_.eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a></li>
+								<li class="tsd-kind-module tsd-parent-kind-external-module"><a href="_util_cloudant_util_.loopbackcloudantdb.html" class="tsd-kind-icon">loop<wbr>Back<wbr>CloudantDB</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Type aliases</h3>
+							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_util_event_handler_util_.html#customhandlers" class="tsd-kind-icon">Custom<wbr>Handlers</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_util_cloudant_util_.html#cloudant" class="tsd-kind-icon">Cloudant</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_util_cloudant_util_.html#datasource" class="tsd-kind-icon">Data<wbr>Source</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported"><a href="_util_cloudant_util_.html#config" class="tsd-kind-icon">config</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-					<a name="customhandlers" class="tsd-anchor"></a>
-					<h3>Custom<wbr>Handlers</h3>
-					<div class="tsd-signature tsd-kind-icon">Custom<wbr>Handlers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="cloudant" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Cloudant</h3>
+					<div class="tsd-signature tsd-kind-icon">Cloudant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require(&quot;loopback-connector-cloudant&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in util/event.handler.util.ts:1</li>
+							<li>Defined in util/cloudant.util.ts:5</li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-								</ul>
-								<ul class="tsd-descriptions">
-									<li class="tsd-description">
-										<h4 class="tsd-parameters-title">Parameters</h4>
-										<ul class="tsd-parameters">
-											<li>
-												<h5>event: <span class="tsd-signature-type">any</span></h5>
-											</li>
-										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-									</li>
-								</ul>
-							</li>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="datasource" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Data<wbr>Source</h3>
+					<div class="tsd-signature tsd-kind-icon">Data<wbr>Source<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require(&quot;loopback-datasource-juggler&quot;).DataSource</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in util/cloudant.util.ts:4</li>
 						</ul>
-					</div>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="config" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in util/cloudant.util.ts:6</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="config.connector" class="tsd-anchor"></a>
+						<h3>connector</h3>
+						<div class="tsd-signature tsd-kind-icon">connector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;cloudant&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in util/cloudant.util.ts:7</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="config.database" class="tsd-anchor"></a>
+						<h3>database</h3>
+						<div class="tsd-signature tsd-kind-icon">database<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;any&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in util/cloudant.util.ts:10</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="config.debug" class="tsd-anchor"></a>
+						<h3>debug</h3>
+						<div class="tsd-signature tsd-kind-icon">debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in util/cloudant.util.ts:9</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="config.url" class="tsd-anchor"></a>
+						<h3>url</h3>
+						<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&#x60;http://${CLOUDANT_USERNAME}:${CLOUDANT_PASSWORD}@${CLOUDANT_URI}&#x60;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in util/cloudant.util.ts:8</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -171,10 +220,15 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_server_.html">"server"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_util_cloudant_util_.html">"util/cloudant.util"</a>
-					</li>
 					<li class="current tsd-kind-external-module">
+						<a href="_util_cloudant_util_.html">"util/cloudant.util"</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-external-module">
+								<a href="_util_cloudant_util_.loopbackcloudantdb.html">loop<wbr>Back<wbr>CloudantDB</a>
+							</li>
+						</ul>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="_util_event_handler_util_.html">"util/event.handler.util"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -196,11 +250,14 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="../classes/_util_event_handler_util_.eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_util_cloudant_util_.html#cloudant" class="tsd-kind-icon">Cloudant</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
-						<a href="_util_event_handler_util_.html#customhandlers" class="tsd-kind-icon">Custom<wbr>Handlers</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_util_cloudant_util_.html#datasource" class="tsd-kind-icon">Data<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_util_cloudant_util_.html#config" class="tsd-kind-icon">config</a>
 					</li>
 				</ul>
 			</nav>

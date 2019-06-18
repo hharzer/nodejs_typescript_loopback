@@ -2,7 +2,6 @@
  * @copyright NBCUniversal, 2019. All Rights Reserved.
  */
 "use strict";
-import util from "util";
 import express from "express";
 import compression from "compression";  // compresses requests
 import session from "express-session";
@@ -12,31 +11,17 @@ import dotenv from "dotenv";
 import expressValidator from "express-validator";
 import YAML from "yamljs";
 import swaggerUi from "swagger-ui-express";
-import swaggerValidator from "swagger-express-validator";
-import SwaggerParser from "swagger-parser";
 import { setRoutes } from "./routes/index.routes";
+import { setInterceptors } from "./interceptors/index.interceptors";
 import { SESSION_SECRET } from "./util/secrets.util";
-// import { SwaggerInputValidator } from "./util/swagger.validator.util";
-
 const schema = YAML.load("./src/definitions/unicorn-cs.yaml");
 
-
-// Callback syntax
-SwaggerParser.validate(schema, (err: any, api: any) => {
-  if (err) {
-  }
-  else {
-  }
-});
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env.example" });
 
 // Create Express server
 const app = express();
-
-// const swaggerMiddleware  = SwaggerInputValidator.init(schema);
-// console.log(swaggerMiddleware);
 
 /**
  *  Seesion headers
@@ -83,6 +68,9 @@ app.use((err: any, req: any, res: { status: (arg0: number) => void; json: (arg0:
 
 /** Set the express js routes */
 setRoutes(app);
+
+/**Set the express js interceptors - optional */
+//setInterceptors(app);
 
 app.all("/*?", function (req, res) {
   res.status(403).json({

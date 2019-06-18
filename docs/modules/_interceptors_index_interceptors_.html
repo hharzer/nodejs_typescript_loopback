@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;middlewares/kafka.middleware&quot; | express-typescript-starter</title>
+	<title>&quot;interceptors/index.interceptors&quot; | express-typescript-starter</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_middlewares_kafka_middleware_.html">&quot;middlewares/kafka.middleware&quot;</a>
+					<a href="_interceptors_index_interceptors_.html">&quot;interceptors/index.interceptors&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;middlewares/kafka.middleware&quot;</h1>
+			<h1>External module &quot;interceptors/index.interceptors&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -71,99 +71,33 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Variables</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_middlewares_kafka_middleware_.html#kafka_server" class="tsd-kind-icon">kafka_<wbr>server</a></li>
-								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_middlewares_kafka_middleware_.html#kafka_topic" class="tsd-kind-icon">kafka_<wbr>topic</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_middlewares_kafka_middleware_.html#invokekafkaconsumer" class="tsd-kind-icon">invoke<wbr>Kafka<wbr>Consumer</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_middlewares_kafka_middleware_.html#invokekafkaproducer" class="tsd-kind-icon">invoke<wbr>Kafka<wbr>Producer</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_interceptors_index_interceptors_.html#setinterceptors" class="tsd-kind-icon">set<wbr>Interceptors</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="kafka_server" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> kafka_<wbr>server</h3>
-					<div class="tsd-signature tsd-kind-icon">kafka_<wbr>server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"localhost:2181"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;localhost:2181&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/iamwilliamdiaz/typescript-node-master/blob/3ef841e/src/middlewares/kafka.middleware.ts#L7">middlewares/kafka.middleware.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
-					<a name="kafka_topic" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> kafka_<wbr>topic</h3>
-					<div class="tsd-signature tsd-kind-icon">kafka_<wbr>topic<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"example"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;example&quot;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/iamwilliamdiaz/typescript-node-master/blob/3ef841e/src/middlewares/kafka.middleware.ts#L6">middlewares/kafka.middleware.ts:6</a></li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="invokekafkaconsumer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagLet">Let</span> invoke<wbr>Kafka<wbr>Consumer</h3>
+					<a name="setinterceptors" class="tsd-anchor"></a>
+					<h3>set<wbr>Interceptors</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">invoke<wbr>Kafka<wbr>Consumer<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Response</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NextFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Interceptors<span class="tsd-signature-symbol">(</span>app<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/iamwilliamdiaz/typescript-node-master/blob/3ef841e/src/middlewares/kafka.middleware.ts#L58">middlewares/kafka.middleware.ts:58</a></li>
+									<li>Defined in interceptors/index.interceptors.ts:4</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>req: <span class="tsd-signature-type">Request</span></h5>
-								</li>
-								<li>
-									<h5>res: <span class="tsd-signature-type">Response</span></h5>
-								</li>
-								<li>
-									<h5>next: <span class="tsd-signature-type">NextFunction</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="invokekafkaproducer" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagLet">Let</span> invoke<wbr>Kafka<wbr>Producer</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">invoke<wbr>Kafka<wbr>Producer<span class="tsd-signature-symbol">(</span>req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Request</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Response</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NextFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/iamwilliamdiaz/typescript-node-master/blob/3ef841e/src/middlewares/kafka.middleware.ts#L9">middlewares/kafka.middleware.ts:9</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>req: <span class="tsd-signature-type">Request</span></h5>
-								</li>
-								<li>
-									<h5>res: <span class="tsd-signature-type">Response</span></h5>
-								</li>
-								<li>
-									<h5>next: <span class="tsd-signature-type">NextFunction</span></h5>
+									<h5>app: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -182,37 +116,49 @@
 						<a href="_app_.html">"app"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_components_account_controller_.html">"components/account.controller"</a>
+						<a href="_components_acpgroups_controller_.html">"components/acpgroups.controller"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_components_account_interface_.html">"components/account.interface"</a>
+						<a href="_components_acpgroups_interface_.html">"components/acpgroups.interface"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_components_account_service_.html">"components/account.service"</a>
+						<a href="_components_acpgroups_service_.html">"components/acpgroups.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_helpers_cloudant_helper_.html">"helpers/cloudant.helper"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_interceptors_header_token_interceptor_.html">"interceptors/header.token.interceptor"</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="_interceptors_index_interceptors_.html">"interceptors/index.interceptors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_middlewares_auth_middleware_.html">"middlewares/auth.middleware"</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="_middlewares_kafka_middleware_.html">"middlewares/kafka.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_middlewares_newrelic_middleware_.html">"middlewares/newrelic.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="_middlewares_swagger_middleware_.html">"middlewares/swagger.middleware"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="_middlewares_yourname_middleware_.html">"middlewares/yourname.middleware"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_routes_account_routes_.html">"routes/account.routes"</a>
+						<a href="_routes_acpgroups_routes_.html">"routes/acpgroups.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_routes_login_routes_.html">"routes/login.routes"</a>
+						<a href="_routes_index_routes_.html">"routes/index.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_routes_signup_routes_.html">"routes/signup.routes"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_server_.html">"server"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_util_cloudant_util_.html">"util/cloudant.util"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_util_event_handler_util_.html">"util/event.handler.util"</a>
@@ -226,21 +172,18 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_util_secrets_util_.html">"util/secrets.util"</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_util_swagger_validator_util_.html">"util/swagger.validator.util"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_util_utils_.html">"util/utils"</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="_middlewares_kafka_middleware_.html#kafka_server" class="tsd-kind-icon">kafka_<wbr>server</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
-						<a href="_middlewares_kafka_middleware_.html#kafka_topic" class="tsd-kind-icon">kafka_<wbr>topic</a>
-					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_middlewares_kafka_middleware_.html#invokekafkaconsumer" class="tsd-kind-icon">invoke<wbr>Kafka<wbr>Consumer</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_middlewares_kafka_middleware_.html#invokekafkaproducer" class="tsd-kind-icon">invoke<wbr>Kafka<wbr>Producer</a>
+						<a href="_interceptors_index_interceptors_.html#setinterceptors" class="tsd-kind-icon">set<wbr>Interceptors</a>
 					</li>
 				</ul>
 			</nav>
